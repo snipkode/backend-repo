@@ -8,7 +8,7 @@ app.use(express.json());
 
 app.get('/', testing);
 app.post('/update-user-data', updateUser);
-app.get('/fetch-user-data/:userId', authMiddleware, getUser);
+app.get('/fetch-user-data/:userId', getUser);
 
 const PORT = process.env.PORT || 9000;
 app.listen(PORT, () => {

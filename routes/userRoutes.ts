@@ -5,7 +5,7 @@ import authMiddleware from '../middleware/AuthMiddleware';
 const router = express.Router();
 
 router.get('/', testing);
-router.post('/update-user-data', authMiddleware, updateUser);
-router.get('/fetch-user-data/:userId', authMiddleware, getUser);
+router.post('/update-user-data', updateUser);
+router.get('/fetch-user-data/:userId', getUser);
 
 export default router;

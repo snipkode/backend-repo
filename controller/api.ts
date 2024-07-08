@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import ApiError from '../entities/ApiError';
 import { fetchUserData, updateUserData } from '../repository/UserCollection';
+import { auth } from '../config/firebaseConfig';
 
 const updateUser = async (req: Request, res: Response, next: NextFunction) => {
   const { userId, data } = req.body;
@@ -29,6 +30,26 @@ const getUser = async (req: Request, res: Response, next: NextFunction) => {
     } else {
       next(ApiError.internal('An unexpected error occurred'));
     }
+  }
+};
+
+const login = async (req: Request, res: Response, next: NextFunction) => {
+  const { email, password } = req.body;
+
+  try {
+    const userRecord = await auth().getUserByEmail(email);
+
+    // User exists, authenticate with email and password
+    await auth().signInWithEmailAndPassword(email, password);
+
+    // Retrieve user ID token for client authentication
+    const user = await auth().getUser(userRecord.uid);
+    const token = await user.getIdToken();
+
+    res.status(200).json({ message: 'Login successful', token });
+  } catch (error) {
+    console.error('Error logging in:', error);
+    next(ApiError.internal('Error logging in'));
   }
 };
 
