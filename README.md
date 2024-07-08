@@ -5,6 +5,10 @@
  ```shell
     npm i && npm run start:dev
  ```
+### Attach Firebase Service Account to Root Directory of Project
+ - Go to project setting > service account > Generate New Key > Download
+
+### Testing 
 
 1. Create USERS firestore collection in your firebase
 2. Test the endpoint below
