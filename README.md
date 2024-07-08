@@ -1,5 +1,11 @@
 ## Technical Test Backend Ebbudy
 
+### Getting Started
+ - Running Server
+ ```shell
+    npm i && npm run start:dev
+ ```
+
 1. Create USERS firestore collection in your firebase
 2. Test the endpoint below
 
