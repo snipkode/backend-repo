@@ -8,6 +8,7 @@
     "start:dev": "concurrently \"tsc --watch\" \"nodemon --watch . --ext ts --ignore dist/ --exec node dist/core/app.js \""
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "firebase-admin": "^9.4.2",
     "jsonwebtoken": "^9.0.2"

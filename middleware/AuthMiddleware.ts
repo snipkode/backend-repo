@@ -3,12 +3,12 @@ import ApiError from '../entities/ApiError';
 import { auth } from '../config/firebaseConfig';
 
 interface AuthenticatedRequest extends Request {
-    currentUser?: Record<string, any>; 
+    currentUser?: Record<string, any>;
 }
 
 const authMiddleware = async (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
     const token = req.headers['authorization'];
-  
+    console.log(token);
     if (!token) {
       return next(ApiError.badRequest('Token is required'));
     }
@@ -18,6 +18,7 @@ const authMiddleware = async (req: AuthenticatedRequest, res: Response, next: Ne
   
       // Attach the decoded token to the request object for further use if needed
       req['currentUser'] = decodedToken;
+      console.log(decodedToken);
   
       next();
     } catch (error) {

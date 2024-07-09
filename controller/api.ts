@@ -33,25 +33,25 @@ const getUser = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const login = async (req: Request, res: Response, next: NextFunction) => {
-  const { email, password } = req.body;
+// const login = async (req: Request, res: Response, next: NextFunction) => {
+//   const { email, password } = req.body;
 
-  try {
-    const userRecord = await auth().getUserByEmail(email);
+//   try {
+//     const userRecord = await auth().getUserByEmail(email);
 
-    // User exists, authenticate with email and password
-    await auth().signInWithEmailAndPassword(email, password);
+//     // User exists, authenticate with email and password
+//     await auth().signInWithEmailAndPassword(email, password);
 
-    // Retrieve user ID token for client authentication
-    const user = await auth().getUser(userRecord.uid);
-    const token = await user.getIdToken();
+//     // Retrieve user ID token for client authentication
+//     const user = await auth().getUser(userRecord.uid);
+//     const token = await user.getIdToken();
 
-    res.status(200).json({ message: 'Login successful', token });
-  } catch (error) {
-    console.error('Error logging in:', error);
-    next(ApiError.internal('Error logging in'));
-  }
-};
+//     res.status(200).json({ message: 'Login successful', token });
+//   } catch (error) {
+//     console.error('Error logging in:', error);
+//     next(ApiError.internal('Error logging in'));
+//   }
+// };
 
 const testing = async(req : Request, res: Response, next: NextFunction) => {
   res.status(200).json({message: "Testing response api!"});
