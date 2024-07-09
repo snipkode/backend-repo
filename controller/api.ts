@@ -5,6 +5,7 @@ import { auth } from '../config/firebaseConfig';
 
 const updateUser = async (req: Request, res: Response, next: NextFunction) => {
   const { userId, data } = req.body;
+  console.log("request body update user!",req.body);
 
   try {
     await updateUserData(userId, data);
